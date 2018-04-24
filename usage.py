@@ -9,7 +9,7 @@ app.scripts.config.serve_locally = True
 
 app.layout = html.Div([
     dash_wordcloud.wordcloud(
-        list=[('foo', 12), ('bar', 13)],
+        # list=[('foo', 12), ('bar', 13)],
         color='random-light',
         backgroundColor='black')
 ])

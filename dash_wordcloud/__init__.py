@@ -24,7 +24,12 @@ _js_dist = [
     }
 ]
 
-_css_dist = []
+_css_dist = [
+    {
+        "relative_package_path": "wordcloud.css",
+        "namespace": "dash_wordcloud"
+    }
+]
 
 
 for _component in _components:
