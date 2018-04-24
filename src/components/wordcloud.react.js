@@ -6,20 +6,35 @@ import WordCloud from 'wordcloud';
 export default class wordcloud extends Component {
     constructor(props) {
         super(props);
+        this.WC = 0;
+        this.width = 1250;
+        this.height = 700;
     }
 
     componentDidMount() {
-        WordCloud(this.refs['my-canvas'], this.props
-    );
+        this.WC = new WordCloud(this.refs['my-canvas'], this.props);
+        this.newLabel(this.refs['my-canvas']);
     }
 
     render() {
         return (
             <div>
-            <canvas ref="my-canvas"></canvas>
+            <canvas ref="my-canvas" 
+            width={this.width} 
+            height={this.height}></canvas>
           </div>
         );
     }
+
+    newLabel(el) {
+        var newDiv = document.createElement('div');
+        var newSpan = document.createElement('span');
+        newDiv.id = 'wcLabel';
+        newSpan.id = 'wcSpan';
+        el.appendChild(newDiv);
+        document.getElementById('wcLabel').appendChild(newSpan);
+    }
+
 
 }
 
@@ -190,7 +205,6 @@ wordcloud.defaultProps = {
         ['Rue Plumet', 5], ['revolution', 5], ['barricade', 5],
         ['sewers', 4], ['Fex urbis lex orbis', 4]
     ],
-    size : 1,
     minSize: 0,
     gridSize: 0,
     fontFamily: 'Segoe UI',
@@ -203,9 +217,33 @@ wordcloud.defaultProps = {
     rotateRatio: 0.4,
     shape: 'circle',
     ellipticity: 0.65,
-    widgetsize: null,
-    figPath: null,
-    hoverFunction: null
+    widgetsize: null, 
+    hover: function(item, dimension, event) {
+        var el = document.getElementById('wcLabel');
+        if (!item) {
+          el.setAttribute('hidden', true);
+      
+          return;
+        }
+      
+        el.removeAttribute('hidden');
+        // console.log(evt.srcElement.offsetLeft);
+      
+        el.style.left = dimension.x + event.srcElement.offsetLeft + 'px';
+        el.style.top = dimension.y + event.srcElement.offsetTop + 'px';
+        el.style.width = dimension.w + 'px';
+        el.style.height = dimension.h + 'px';
+      
+        this.hoverDimension = dimension;
+      
+        document.getElementById('wcSpan').setAttribute(
+          'data-l10n-args', JSON.stringify({ word: item[0], count: item[1] }));
+        document.getElementById('wcSpan').innerHTML =item[0]+':' + item[1];
+      
+      },
+    click: function(item) {
+        alert(item[0] + ': ' + item[1]);
+      }
     // list: [
     // ['foo', 12],
     // ['bar', 6]
