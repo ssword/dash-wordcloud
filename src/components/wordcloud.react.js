@@ -41,6 +41,7 @@ export default class wordcloud extends Component {
 
 
 wordcloud.propTypes = {
+    // TODO: reconsider the PropTypes for each parameter.
     /**
      * The ID used to identify this compnent in Dash callbacks
      */
