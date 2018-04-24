@@ -1,6 +1,6 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+// requires wordcloud package
 import WordCloud from 'wordcloud';
 
 export default class wordcloud extends Component {
@@ -8,36 +8,22 @@ export default class wordcloud extends Component {
         super(props);
     }
 
-
     componentDidMount() {
-        WordCloud(this.refs['my-canvas'],
-        {
-            list: [
-                ['foo', 12],
-                ['bar', 6]
-            ],
-            weightFactor: 5,
-            fontFamily: 'Times, serif',
-            color: function (word, weight) {
-                return (weight === 12) ? '#f02222' : '#c09292';
-            },
-            rotateRatio: 0.5,
-            rotationSteps: 2,
-            backgroundColor: '#ffe0e0'
-        });
+        WordCloud(this.refs['my-canvas'], this.props
+    );
     }
 
     render() {
         return (
             <div>
-            <h2>Let magic happen {'\u2728'}</h2>
-            <canvas ref="my-canvas">
-            </canvas>
+            <canvas ref="my-canvas"></canvas>
           </div>
         );
     }
 
 }
+
+
 
 wordcloud.propTypes = {
     /**
@@ -98,7 +84,7 @@ wordcloud.propTypes = {
      */
     drawOutOfBound: PropTypes.bool,
     /**
-     *  origin of the “cloud” in [x, y].
+     *  origin of the "cloud" in [x, y].
      */
     origin: PropTypes.any,
     /**
@@ -140,7 +126,7 @@ wordcloud.propTypes = {
     maxRotation: PropTypes.number,
     /**
      * Force the use of a defined number of angles. 
-     * Set the value equal to 2 in a -90°/90° range means
+     * Set the value equal to 2 in a -90 degree/90 degree range means
      *  just -90, 0 or 90 will be used.
      */
     rotationSteps: PropTypes.number,
@@ -220,4 +206,16 @@ wordcloud.defaultProps = {
     widgetsize: null,
     figPath: null,
     hoverFunction: null
+    // list: [
+    // ['foo', 12],
+    // ['bar', 6]
+    // ],
+    // weightFactor: 5,
+    // fontFamily: 'Times, serif',
+    // color: function (word, weight) {
+    //     return (weight === 12) ? '#f02222' : '#c09292';
+    // },
+    // rotateRatio: 0.5,
+    // rotationSteps: 2,
+    // backgroundColor: '#ffe0e0'
 }
