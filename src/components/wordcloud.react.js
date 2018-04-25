@@ -12,8 +12,17 @@ export default class wordcloud extends Component {
     }
 
     componentDidMount() {
-        this.WC = new WordCloud(this.refs['my-canvas'], this.props);
-        this.newLabel(this.refs['my-canvas']);
+        // this.WC = new WordCloud(this.refs['my-canvas'], this.props);
+        // this.newLabel(this.refs['my-canvas']);
+
+        var el = this.refs['my-canvas']
+        var newCanvas = document.createElement('canvas');
+        newCanvas.height = this.height;
+        newCanvas.width = this.width;
+        newCanvas.id = 'canvas';
+        el.appendChild(newCanvas);
+        this.newLabel(el);
+        this.WC = new WordCloud(el, this.props);
     }
 
     render() {
@@ -21,7 +30,9 @@ export default class wordcloud extends Component {
             <div>
             <canvas ref="my-canvas" 
             width={this.width} 
-            height={this.height}></canvas>
+            height={this.height}
+            >
+            </canvas>
           </div>
         );
     }
@@ -218,7 +229,6 @@ wordcloud.defaultProps = {
     rotateRatio: 0.4,
     shape: 'circle',
     ellipticity: 0.65,
-    widgetsize: null, 
     hover: function(item, dimension, event) {
         var el = document.getElementById('wcLabel');
         if (!item) {
@@ -228,7 +238,7 @@ wordcloud.defaultProps = {
         }
       
         el.removeAttribute('hidden');
-        // console.log(evt.srcElement.offsetLeft);
+        console.log(event.srcElement.offsetLeft);
       
         el.style.left = dimension.x + event.srcElement.offsetLeft + 'px';
         el.style.top = dimension.y + event.srcElement.offsetTop + 'px';

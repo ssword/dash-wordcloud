@@ -12,7 +12,7 @@ class Demo extends Component {
     render() {
         return (
             <div>
-                <wordcloud />
+                <wordcloud color="random-light" backgroundColor="black" />
             </div>
         );
     }
