@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // requires wordcloud package
 import WordCloud from 'wordcloud';
 
-export default class wordcloud extends Component {
+export default class Wordcloud extends Component {
     constructor(props) {
         super(props);
         this.WC = 0;
@@ -31,6 +31,7 @@ export default class wordcloud extends Component {
             <canvas ref="my-canvas" 
             width={this.width} 
             height={this.height}
+            // style="width: 100%; height: auto;"
             >
             </canvas>
           </div>
@@ -50,7 +51,7 @@ export default class wordcloud extends Component {
 
 
 
-wordcloud.propTypes = {
+Wordcloud.propTypes = {
     // TODO: reconsider the PropTypes for each parameter.
     /**
      * The ID used to identify this compnent in Dash callbacks
@@ -64,7 +65,7 @@ wordcloud.propTypes = {
     /**
      * Font to use.
      */
-    fontFamily: PropTypes.object,
+    fontFamily: PropTypes.string,
     /**
      * font weight to use, can be, as an example, normal, bold or 600 or 
      * a callback(word, weight, fontSize specifies different font-weight 
@@ -204,7 +205,7 @@ wordcloud.propTypes = {
     click: PropTypes.func
 };
 
-wordcloud.defaultProps = {
+Wordcloud.defaultProps = {
     list: [
         ['Les Misérables', 30], ['Victor Hugo', 20], ['Jean Valjean', 15],
         ['Javert', 15], ['Fantine', 15], ['Cosette', 15],
@@ -245,7 +246,7 @@ wordcloud.defaultProps = {
         el.style.width = dimension.w + 'px';
         el.style.height = dimension.h + 'px';
       
-        this.hoverDimension = dimension;
+        //this.hoverDimension = dimension;
       
         document.getElementById('wcSpan').setAttribute(
           'data-l10n-args', JSON.stringify({ word: item[0], count: item[1] }));

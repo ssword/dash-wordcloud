@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {wordcloud} from '../src';
+import {Wordcloud} from '../src';
 
 class Demo extends Component {
     constructor() {
@@ -12,7 +12,10 @@ class Demo extends Component {
     render() {
         return (
             <div>
-                <wordcloud color="random-light" backgroundColor="black" />
+                <Wordcloud 
+                 color="random-light"
+                 weightFactor="5"
+                 backgroundColor="black" />
             </div>
         );
     }

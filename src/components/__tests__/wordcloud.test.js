@@ -1,11 +1,11 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import wordcloud from '../wordcloud.react';
+import Wordcloud from '../Wordcloud.react';
 
-describe('wordcloud', () => {
+describe('Wordcloud', () => {
 
     it('renders', () => {
-        const component = shallow(<wordcloud />);
+        const component = shallow(<Wordcloud />);
         expect(component).to.be.ok;
     });
 });
