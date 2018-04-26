@@ -19,7 +19,7 @@ app.layout = html.Div([
         # list=[('foo', 12), ('bar', 13)],
         weightFactor=5,
         color='random-light',
-        backgroundColor='black')
+        backgroundColor='white')
 ])
 
 # @app.callback(
@@ -29,4 +29,4 @@ app.layout = html.Div([
 #     return 'You have entered {}'.format(value)
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=True, host='0.0.0.0')
