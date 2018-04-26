@@ -16,11 +16,11 @@ export default class wordcloud extends Component {
         // this.newLabel(this.refs['my-canvas']);
 
         var el = this.refs['my-canvas']
-        var newCanvas = document.createElement('canvas');
-        newCanvas.height = this.height;
-        newCanvas.width = this.width;
-        newCanvas.id = 'canvas';
-        el.appendChild(newCanvas);
+        // var newCanvas = document.createElement('canvas');
+        // newCanvas.height = this.height;
+        // newCanvas.width = this.width;
+        // newCanvas.id = 'canvas';
+        // el.appendChild(newCanvas);
         this.newLabel(el);
         this.WC = new WordCloud(el, this.props);
     }
@@ -45,7 +45,6 @@ export default class wordcloud extends Component {
         el.appendChild(newDiv);
         document.getElementById('wcLabel').appendChild(newSpan);
     }
-
 
 }
 
@@ -239,6 +238,7 @@ wordcloud.defaultProps = {
       
         el.removeAttribute('hidden');
         console.log(event.srcElement.offsetLeft);
+        console.log(dimension);
       
         el.style.left = dimension.x + event.srcElement.offsetLeft + 'px';
         el.style.top = dimension.y + event.srcElement.offsetTop + 'px';
