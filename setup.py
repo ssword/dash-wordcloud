@@ -1,6 +1,6 @@
 from setuptools import setup
 
-exec (open('dash_wordcloud/version.py').read())
+exec(open('dash_wordcloud/version.py').read())
 
 setup(
     name='dash_wordcloud',

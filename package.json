@@ -17,6 +17,7 @@
     "demo": "builder run demo",
     "install-local": "npm run copy-lib && python setup.py install",
     "prepublish": "npm test && builder run build-dist && npm run copy-lib",
+    "publish-git": "git push --follow-tags",
     "publish-all": "npm publish && python setup.py sdist upload",
     "publish-pypi": "npm run prepublish && python setup.py sdist upload",
     "start": "builder run build-dev",
