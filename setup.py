@@ -6,6 +6,7 @@ setup(
     name='dash_wordcloud',
     version=__version__,
     author='ssword',
+    author_email='ssword@gmail.com',
     packages=['dash_wordcloud'],
     include_package_data=True,
     license='MIT',

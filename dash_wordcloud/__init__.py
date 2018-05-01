@@ -27,6 +27,7 @@ _js_dist = [
 _css_dist = [
     {
         "relative_package_path": "wordcloud.css",
+        "external_url": "https://codepen.io/ssword/pen/LmNKMQ.css",
         "namespace": "dash_wordcloud"
     }
 ]
