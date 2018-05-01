@@ -6,34 +6,25 @@ import WordCloud from 'wordcloud';
 export default class Wordcloud extends Component {
     constructor(props) {
         super(props);
-        this.WC = 0;
         this.width = 1250;
         this.height = 700;
     }
 
     componentDidMount() {
-        // this.WC = new WordCloud(this.refs['my-canvas'], this.props);
-        // this.newLabel(this.refs['my-canvas']);
-
         var el = this.refs['my-canvas']
-        // var newCanvas = document.createElement('canvas');
-        // newCanvas.height = this.height;
-        // newCanvas.width = this.width;
-        // newCanvas.id = 'canvas';
-        // el.appendChild(newCanvas);
+
+        var newCanvas = document.createElement('canvas');
+        newCanvas.height = this.height;
+        newCanvas.width = this.width;
+        newCanvas.id = 'canvas';
+        el.appendChild(newCanvas);
         this.newLabel(el);
-        this.WC = new WordCloud(el, this.props);
+        this.WC = new WordCloud(el.firstChild, this.props);
     }
 
     render() {
         return (
-            <div>
-            <canvas ref="my-canvas" 
-            width={this.width} 
-            height={this.height}
-            // style="width: 100%; height: auto;"
-            >
-            </canvas>
+            <div ref="my-canvas">
           </div>
         );
     }
@@ -238,34 +229,21 @@ Wordcloud.defaultProps = {
         }
       
         el.removeAttribute('hidden');
-        console.log(event.srcElement.offsetLeft);
-        console.log(dimension);
       
         el.style.left = dimension.x + event.srcElement.offsetLeft + 'px';
         el.style.top = dimension.y + event.srcElement.offsetTop + 'px';
         el.style.width = dimension.w + 'px';
         el.style.height = dimension.h + 'px';
       
-        //this.hoverDimension = dimension;
+        this.hoverDimension = dimension;
       
         document.getElementById('wcSpan').setAttribute(
           'data-l10n-args', JSON.stringify({ word: item[0], count: item[1] }));
         document.getElementById('wcSpan').innerHTML =item[0]+':' + item[1];
       
       },
+
     click: function(item) {
         alert(item[0] + ': ' + item[1]);
       }
-    // list: [
-    // ['foo', 12],
-    // ['bar', 6]
-    // ],
-    // weightFactor: 5,
-    // fontFamily: 'Times, serif',
-    // color: function (word, weight) {
-    //     return (weight === 12) ? '#f02222' : '#c09292';
-    // },
-    // rotateRatio: 0.5,
-    // rotationSteps: 2,
-    // backgroundColor: '#ffe0e0'
 }
