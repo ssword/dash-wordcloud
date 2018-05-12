@@ -6,18 +6,22 @@ import WordCloud from 'wordcloud';
 export default class Wordcloud extends Component {
     constructor(props) {
         super(props);
+        this.wc = 0;
+        this.params = {};
     }
 
     componentDidMount() {
-        
+        const {id, list, style, options, hover, click} = this.props;
+        this.params = Object.assign({}, {list:list}, 
+        options,{hover:hover}, {click:click})
+
         var el = this.refs['my-canvas']
         var newCanvas = document.createElement('canvas');
-        newCanvas.height = this.props.height;
-        newCanvas.width = this.props.width;
-        newCanvas.id = 'canvas';
+        newCanvas.id = id;
+        newCanvas.style = style;
         el.appendChild(newCanvas);
         this.newLabel(el);
-        this.WC = new WordCloud(el.firstChild, this.props);
+        this.WC = new WordCloud(el.firstChild, this.params);
     }
 
     render() {
@@ -87,8 +91,6 @@ Wordcloud.defaultProps = {
         ['Rue Plumet', 5], ['revolution', 5], ['barricade', 5],
         ['sewers', 4], ['Fex urbis lex orbis', 4]
     ],
-    options = {},
-
     hover: function(item, dimension, event) {
         var el = document.getElementById('wcLabel');
         if (!item) {

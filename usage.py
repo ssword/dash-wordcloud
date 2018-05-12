@@ -9,9 +9,11 @@ app.scripts.config.serve_locally = True
 
 app.layout = html.Div([
     dash_wordcloud.Wordcloud(
-        weightFactor=5,
-        color='random-light',
-        backgroundColor='black')
+        style=dict(height= '600px', width= '100%'),
+        options=dict(
+            weightFactor=5,
+            color='random-light',
+            backgroundColor='black'))
 ])
 
 if __name__ == '__main__':
