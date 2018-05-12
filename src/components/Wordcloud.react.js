@@ -9,8 +9,8 @@ export default class Wordcloud extends Component {
     }
 
     componentDidMount() {
+        
         var el = this.refs['my-canvas']
-
         var newCanvas = document.createElement('canvas');
         newCanvas.height = this.props.height;
         newCanvas.width = this.props.width;
@@ -76,8 +76,6 @@ Wordcloud.propTypes = {
 };
 
 Wordcloud.defaultProps = {
-    width: 1024,
-    height: 960,
     list: [
         ['Les Misérables', 30], ['Victor Hugo', 20], ['Jean Valjean', 15],
         ['Javert', 15], ['Fantine', 15], ['Cosette', 15],
