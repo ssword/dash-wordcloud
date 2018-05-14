@@ -1,6 +1,6 @@
 {
   "name": "dash-wordcloud",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A Dash UI component for wordcloud visualization",
   "main": "lib/index.js",
   "repository": {
