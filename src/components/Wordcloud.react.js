@@ -7,38 +7,45 @@ export default class Wordcloud extends Component {
     constructor(props) {
         super(props);
         this.wc = 0;
-        this.params = {};
+        this.list = [];
     }
 
     componentDidMount() {
-        const {id, list, style, options, hover, click} = this.props;
-        this.params = Object.assign({}, {list:list}, 
-        options,{hover:hover}, {click:click})
+        this.drawWordcloud();
+    }
 
-        var el = this.refs['my-canvas']
-        var newCanvas = document.createElement('canvas');
-        newCanvas.id = id;
-        newCanvas.style = style;
-        el.appendChild(newCanvas);
-        this.newLabel(el);
-        this.WC = new WordCloud(el.firstChild, this.params);
+    componentDidUpdate() {
+        this.drawWordcloud();
     }
 
     render() {
+        const {style} = this.props;
         return (
-            <div ref="my-canvas">
+            <div style={style} ref="my-canvas">
+                <canvas></canvas>
+                <div id='wcLabel'>
+                    <span id='wcSpan'></span>
+                </div>
+
           </div>
         );
     }
 
-    newLabel(el) {
-        var newDiv = document.createElement('div');
-        var newSpan = document.createElement('span');
-        newDiv.id = 'wcLabel';
-        newSpan.id = 'wcSpan';
-        el.appendChild(newDiv);
-        document.getElementById('wcLabel').appendChild(newSpan);
+    drawWordcloud(){
+        const {id, list, options, hover, click} = this.props;
+        this.list = list;
+        var params = Object.assign({}, {list:list}, 
+        options,{hover:hover}, {click:click})
+
+        var el = this.refs['my-canvas']
+        var newCanvas = el.firstChild;
+        newCanvas.id = id;
+        newCanvas.height = 700;
+        newCanvas.width = 900;
+        this.WC = new WordCloud(el.firstChild, params);
     }
+
+
 
 }
 
@@ -91,6 +98,8 @@ Wordcloud.defaultProps = {
         ['Rue Plumet', 5], ['revolution', 5], ['barricade', 5],
         ['sewers', 4], ['Fex urbis lex orbis', 4]
     ],
+    style: {},
+    options: {},
     hover: function(item, dimension, event) {
         var el = document.getElementById('wcLabel');
         if (!item) {
