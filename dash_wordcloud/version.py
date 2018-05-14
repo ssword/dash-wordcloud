@@ -1,2 +1,2 @@
 # TODO: add script to manually update this version.
-__version__ = '0.3.0'
+__version__ = '0.3.1'
