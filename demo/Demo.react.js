@@ -10,6 +10,7 @@ class Demo extends Component {
     }
 
     render() {
+        // TDDO: this demo needs to be updated.
         return (
             <div>
                 <Wordcloud 

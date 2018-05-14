@@ -24,6 +24,7 @@ _js_dist = [
     }
 ]
 
+# TODO: add script to including CSS into the package.
 _css_dist = [
     {
         "relative_package_path": "wordcloud.css",

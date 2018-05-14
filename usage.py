@@ -8,6 +8,16 @@ app = dash.Dash('')
 
 app.scripts.config.serve_locally = True
 
+default_list = [('foo', 12), ('bar', 6)]
+
+def process_data_list(value):
+    data_list = [('foo', 12), ('bar', 6), ('foobar', 4)]
+    print("I am here")
+    if not value:
+        return data_list
+    else:
+        return default_list
+
 app.layout = html.Div([
     dcc.Checklist(
         id='check',
@@ -15,7 +25,7 @@ app.layout = html.Div([
         values=['YES']
     ),
     dash_wordcloud.Wordcloud(id='wc',
-                             list=[('foo', 12), ('bar', 6)],
+                            #  list = default_list,
                              style=dict(height='700px', width='100%'),
                              options=dict(weightFactor=5,
                                           color='random-light',
@@ -27,12 +37,8 @@ app.layout = html.Div([
     [Input('check', 'values')])
 def update_wordcloud(value):
     # update the word cloud
-    data_list = [('foo', 12), ('bar', 6), ('foobar', 4)]
-    default_list = [('foo', 12), ('bar', 6)]
-    if not value:
-        return data_list
-    else:
-        return default_list
+    return process_data_list(value)
+
 
 
 if __name__ == '__main__':

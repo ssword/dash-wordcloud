@@ -6,17 +6,19 @@ import WordCloud from 'wordcloud';
 export default class Wordcloud extends Component {
     constructor(props) {
         super(props);
-        this.wc = 0;
-        this.list = [];
+        this.list = {};
     }
 
     componentDidMount() {
-        this.drawWordcloud();
+        // this.drawWordcloud();
     }
 
-    componentDidUpdate() {
-        this.drawWordcloud();
+    componentDidUpdate(prevProps) {
+        if(prevProps.list != this.props.list) {
+            this.drawWordcloud();
+        }
     }
+
 
     render() {
         const {style} = this.props;
@@ -40,13 +42,11 @@ export default class Wordcloud extends Component {
         var el = this.refs['my-canvas']
         var newCanvas = el.firstChild;
         newCanvas.id = id;
+        // TODO: setting up height and width according to container.
         newCanvas.height = 700;
         newCanvas.width = 900;
-        this.WC = new WordCloud(el.firstChild, params);
+        WordCloud(el.firstChild, params);
     }
-
-
-
 }
 
 
