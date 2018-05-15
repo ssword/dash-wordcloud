@@ -39,8 +39,6 @@ export default class Wordcloud extends Component {
         this.list = list;
         // TODO: find better way to represent weightFactor
         var weightFactor = size * 130 / (list[0][1]);
-        console.log(list);
-        console.log(weightFactor);
         var params = Object.assign({}, {list:list}, 
         options,{weightFactor:weightFactor}, {hover:hover}, {click:click})
 
