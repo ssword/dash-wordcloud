@@ -12,7 +12,6 @@ default_list = [('foo', 12), ('bar', 6)]
 
 def process_data_list(value):
     data_list = [('foo', 12), ('bar', 6), ('foobar', 4)]
-    print("I am here")
     if not value:
         return data_list
     else:
@@ -27,8 +26,8 @@ app.layout = html.Div([
     dash_wordcloud.Wordcloud(id='wc',
                             #  list = default_list,
                              style=dict(height='700px', width='100%'),
-                             options=dict(weightFactor=5,
-                                          color='random-light',
+                             options=dict(color='random-light',
+                                          size=2,
                                           backgroundColor='black'))
 ])
 

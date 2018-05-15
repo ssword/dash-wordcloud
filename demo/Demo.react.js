@@ -13,10 +13,7 @@ class Demo extends Component {
         // TDDO: this demo needs to be updated.
         return (
             <div>
-                <Wordcloud 
-                 color="random-light"
-                 weightFactor="5"
-                 backgroundColor="black" />
+                <Wordcloud />
             </div>
         );
     }

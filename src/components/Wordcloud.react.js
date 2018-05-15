@@ -34,17 +34,22 @@ export default class Wordcloud extends Component {
     }
 
     drawWordcloud(){
-        const {id, list, options, hover, click} = this.props;
+        const {id, list, size, options, hover, click} = this.props;
+        list.sort(function(a, b) {return b[1] - a[1];})
         this.list = list;
+        // TODO: find better way to represent weightFactor
+        var weightFactor = size * 130 / (list[0][1]);
+        console.log(list);
+        console.log(weightFactor);
         var params = Object.assign({}, {list:list}, 
-        options,{hover:hover}, {click:click})
+        options,{weightFactor:weightFactor}, {hover:hover}, {click:click})
 
         var el = this.refs['my-canvas']
         var newCanvas = el.firstChild;
         newCanvas.id = id;
         // TODO: setting up height and width according to container.
         newCanvas.height = 700;
-        newCanvas.width = 900;
+        newCanvas.width = 1024;
         WordCloud(el.firstChild, params);
     }
 }
@@ -57,12 +62,15 @@ Wordcloud.propTypes = {
      */
     id: PropTypes.string,
     /**
+     * // TODO: comment needs to be updated. 
      * Width of the canvas
      * Default: 1024
      */
     style: PropTypes.object,
 
+    // TODO: add comments here.
     options: PropTypes.object,
+    size: PropTypes.number,
     /**
      * List of words/text to paint on the canvas in a 2-d array, 
      * in the form of [word, size], e.g. [['foo', 12], ['bar', 6]].
@@ -98,6 +106,7 @@ Wordcloud.defaultProps = {
         ['Rue Plumet', 5], ['revolution', 5], ['barricade', 5],
         ['sewers', 4], ['Fex urbis lex orbis', 4]
     ],
+    size: 2,
     style: {},
     options: {},
     hover: function(item, dimension, event) {
