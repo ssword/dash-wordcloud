@@ -2,4 +2,4 @@ include dash_wordcloud/bundle.js
 include dash_wordcloud/bundle.js.map
 include dash_wordcloud/metadata.json
 include README.md
-include LICENSE.md
+include LICENSE.txt

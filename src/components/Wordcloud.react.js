@@ -123,11 +123,18 @@ Wordcloud.defaultProps = {
         el.style.height = dimension.h + 'px';
       
         this.hoverDimension = dimension;
-      
+
+
+        if(item.length === 2){
         document.getElementById('wcSpan').setAttribute(
           'data-l10n-args', JSON.stringify({ word: item[0], count: item[1] }));
         document.getElementById('wcSpan').innerHTML =item[0]+':' + item[1];
-      
+        } else {
+            document.getElementById('wcSpan').setAttribute(
+                'data-l10n-args', 
+                JSON.stringify({ word: item[0], count: item[1], events: item[2] }));
+              document.getElementById('wcSpan').innerHTML =item[0]+': ' + item[1] + ' words ' + item[2] + ' events';
+        }
       },
       click: null
     // click: function(item) {

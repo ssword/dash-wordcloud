@@ -8,10 +8,10 @@ app = dash.Dash('')
 
 app.scripts.config.serve_locally = True
 
-default_list = [('foo', 12), ('bar', 6)]
+default_list = [('foo', 12, 7), ('bar', 6, 3)]
 
 def process_data_list(value):
-    data_list = [('foo', 12), ('bar', 6), ('foobar', 4)]
+    data_list = [('foo', 12, 7), ('bar', 6, 3), ('foobar', 4, 2)]
     if not value:
         return data_list
     else:
